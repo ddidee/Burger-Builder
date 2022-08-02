@@ -41,6 +41,10 @@ class Burger extends Component{
 
     deleteIngredientsHandler = (type) => {
         const oldCount = this.state.ingredients[type]
+        if (oldCount <= 0) {
+            return;
+          }
+ 
         const updatedCount = oldCount-1
         const updatedIngredients = {
             ...this.state.ingredients
@@ -113,10 +117,18 @@ class Burger extends Component{
     //     })
     // }
     render(){
+        const disabledInfo = {
+            ...this.state.ingredients
+          }
+    
+          for(let key in disabledInfo){
+            disabledInfo[key] = disabledInfo[key] <= 0
+          }
         return(
             <div className={Classes.content}>
                 <Bread ingredients={this.state.ingredients} />
                 <BuildControls 
+                disabled = {disabledInfo}
                 ingredientsAdded={this.addIngredientsHandler}
                 ingredientsDeleted={this.deleteIngredientsHandler}
                 ></BuildControls>

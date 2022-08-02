@@ -9,7 +9,7 @@ const Layout =(props)=>{
             <main >
                 
                 {props.children}
-                <div className={classes.sail}>ddidee</div>
+                {/* <div className={classes.sail}>ddidee</div> */}
             </main>
         </Aux>
     )
